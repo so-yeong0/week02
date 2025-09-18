@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ENNIO MORRICONE</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-image: url('ennio.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Playfair Display', serif;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .overlay {
+      background-color: rgba(0,0,0,0.6);
+      backdrop-filter: blur(0.2px);
+      min-height: 100vh;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 40px;
+      letter-spacing: 4px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      display: inline-block;
+      padding: 10px 30px;
+      border-radius: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 200px;
+    }
+
+    .img-block {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .img-block img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .img-block:hover img,
+    .img-block.active img {
+      filter: brightness(1.2);
+      transform: scale(1.05);
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+    <h1>ENNIO MORRICONE</h1>
+
+    <div class="container">
+      <div class="img-block" id="cinemaBlock">
+        <img src="cinema.jpg" id="cinemaImg" alt="Cinema Paradiso">
+        <div class="label">Cinema Paradiso</div>
+      </div>
+
+      <div class="img-block" id="missionBlock">
+        <img src="mission.jpg" id="missionImg" alt="The Mission">
+        <div class="label">The Mission</div>
+      </div>
+
+      <div class="img-block" id="loveBlock">
+        <img src="love.jpg" id="loveImg" alt="Love Affair">
+        <div class="label">Love Affair (Piano Solo)</div>
+      </div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="audio1" src="cinema.mp3"></audio>
+    <audio id="audio2" src="mission.mp3"></audio>
+    <audio id="audio3" src="love.mp3"></audio>
+  </div>
+
+  <script>
+    const audio1 = document.getElementById("audio1");
+    const audio2 = document.getElementById("audio2");
+    const audio3 = document.getElementById("audio3");
+
+    const cinema = document.getElementById("cinemaBlock");
+    const mission = document.getElementById("missionBlock");
+    const love = document.getElementById("loveBlock");
+
+    const blocks = [cinema, mission, love];
+
+    function stopAll() {
+      audio1.pause(); audio1.currentTime = 0;
+      audio2.pause(); audio2.currentTime = 0;
+      audio3.pause(); audio3.currentTime = 0;
+      blocks.forEach(block => block.classList.remove("active"));
+    }
+
+    cinema.onclick = function() {
+      stopAll();
+      audio1.play();
+      cinema.classList.add("active");
+    }
+
+    mission.onclick = function() {
+      stopAll();
+      audio2.play();
+      mission.classList.add("active");
+    }
+
+    love.onclick = function() {
+      stopAll();
+      audio3.play();
+      love.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
